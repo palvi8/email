@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <style>
+     .effect2
+        {
+          position: relative;
+        }
+        .effect2:before, .effect2:after
+        {
+          z-index: -1;
+          position: absolute;
+          content: "";
+          bottom: 15px;
+          left: 10px;
+          width: 50%;
+          top: 80%;
+          max-width:300px;
+          box-shadow: 0 15px 10px #777;
+          transform: rotate(-3deg);
+        }
+        .effect2:after
+        {
+          transform: rotate(3deg);
+          right: 10px;
+          left: auto;
+        }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="email"></div>
+  </div>
+  <script>
+  var productsData = JSON.parse(localStorage.emailProductsDetails);
+  var length = productsData.length;
+  var cardData = '';
+  for(var i=0;i<length;i++){
+    cardData +=   '<div class="container " style="border:1px solid #e2e0e5; background-color:white">'+
+                  '<div class="row effect2">'+
+                  '<div class="col-md-12 col-sm-12  box" >'+
+                  '<div class="row" style="background-color:#e2e0e5; padding:11px"><div class="col-md-8 col-sm-8" style="font-size:13px">Booking Reference No.</div><div class="col-md-4 col-sm-4"><a style="font-size:11px;float:right;cursor:pointer;color:#4cb050;font-weight:bold">PRINT VOUCHER</a></div></div>'+
+                  '<div class="row " style="margin-top:10px;">'+
+                  '<div class="col-md-3 col-sm-3">'+
+                  '<img width="100%" style="margin:0;height:170px;padding:5px;border-top-left-radius:4px;border-bottom-left-radius:4px;"src="'+productsData[i].product_image+'" alt="" />'+
+                  '</div>'+
+                  '<div class="col-md-9 col-sm-9 col-xs-12">'+
+                  '<h3 style="font-size:15px;font-weight:bold; line-height:21px">'+productsData[i].product_title+'</h3>'+
+                   '<div class="row">'+
+                   '<div class="col-md-6 col-sm-6 col-xs-3">'+
+                       '<h5 style="font-size:12px; font-weight:bold; align:left; color:#63596a; line-height:18px;">Product Code: '+productsData[i].product_code+'</h5>'+
+                       '<h5 style="font-size:12px; font-weight:bold; align:left; color:#63596a; line-height:18px;">Tour Grade: '+productsData[i].tour_grades+'</h5>'+
+                       '<h5 style="font-size:12px; font-weight:bold; align:left; color:#63596a; line-height:18px;">Adults: '+productsData[i].adult_count+' Children: '+productsData[i].child_count+' Ifants: '+productsData[i].infant_count+'</h5>'+
+                       '<h5 style="font-size:12px; font-weight:bold; align:left; color:#63596a; line-height:18px;">Travel Date: '+productsData[i].booking_date.substr(0,10)+'</h5>'+
+                  '</div>'+
+                  '<div class="col-md-6 col-sm-6 col-xs-3">'+
+                   '<span style="float:right; font-size:11px; color:#520086">Total Paid</span>'+
+                   '<br>'+
+                   '<span style="float:right; font-size: 25px;color: #520086;font-weight: bold;">US$</span>'+
+                   '<br>'+
+                   '<br>'+
+                   '<span style="float:right"><span style="font-size:12px;color: #464448;">Status: <strong>Confirmed</strong></span></span>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '</div>'+
+                  '<br>';
+  }
+  document.getElementById('email').innerHTML = '<div class="container" style="border:1px solid #e2e0e5">'+
+                   '<div class="row" style="background-color:#ff1477;color:white;padding:15px 0px;"><div class="col-md-12 col-sm-12"><span style="font-size:17px">TROOKING BOOKING CONFIRMATION</span></div></div>'+
+                   '<div class="row"><div class="col-md-12 col-sm-12" style="margin:15px;font-size:15px; color:#63596a;float:left"><span style="font-size:15px">hello <strong>Name</strong></span></div><div class="col-md-12 col-sm-12"  style="margin:-4px 0px 20px 14px;font-size:15px; color:#63596a;float:left"><span style="font-size:14px">Thank you for your Booking with us. Please find your Booking details with your Voucher below: </span></div></div>'+
+                        cardData+
+                   '<div class="row"  style="border-bottom:1px dashed #bababa"><div class="col-md-12 col-sm-12" style="color:#222; margin:42px 0px"><span style="font-size:13px;margin: 0px 10px;">To cancel your booking <a style="font-size:12px; color:#520085;text-decoration:underline; cursor:pointer">click here</a></span></div></div>'+
+                   '<div class="row"><div class="col-md-12 col-sm-12"><center style="font-size:12px; color:#63596a;margin:8px 0px 0px 0px">If in any case you find issues with the information provided above, kindly contact our support team.</center></div></div>'+
+                   '<div class="row"><div class="col-md-12 col-sm-12"><center><a style="font-size:12px; color:#520085;text-decoration:underline; cursor:pointer">email@com</a></center></div></div>'+
+                   '<div class="row"><div class="col-md-12 col-sm-12" style="margin-left:8px"><span style="font-size:14px;color:#918f92">Thanks</span><br><span style="color:#3e3842; font-size:17px">Team</span></div></div>'+
+                  
+                   '<div class="row" style="background-color:#dcd9e0">'+
+                   '<div class="col-md-12 col-sm-12" >'+
+                   '<center style="color:#63596a; font-size:13px;font-weight:bold;text-transform:uppercase;margin: 25px 0px 14px 0px;"><span>Connect With us</span></center>'+
+                   '</div>'+
+                    '<div class="col-md-3 col-sm-3"></div>'+
+                    '<div class="col-md-1 col-sm-1" style="margin:0 auto">'+
+                   '<center><span><a style="background-color:#e9e9e9; padding:6px 13px; font-size:14px;color:#520086; border: 1px solid lightgrey; cursor:pointer;"><i class="fa fa-facebook" aria-hidden="true"></i></a> </span></center>'+
+                   '</div>'+
+                    '<div class="col-md-1 col-sm-1" style="margin:0 auto">'+
+                   '<center><span>  <a style="background-color:#e9e9e9; padding:6px 11px; font-size:14px;color:#520086;cursor:pointer;border:1px solid lightgrey;"><i class="fa fa-twitter" aria-hidden="true"></i></a></span></center>'+
+                   '</div>'+
+                    '<div class="col-md-1 col-sm-1" style="margin:0 auto">'+
+                   '<center><span><a style="background-color:#e9e9e9; padding:6px 11px; font-size:14px;color:#520086;border:1px solid lightgrey;cursor:pointer"><i class="fa fa-instagram" aria-hidden="true"></i></a></span></center>'+
+                   '</div>'+
+                    '<div class="col-md-1 col-sm-1" style="margin:0 auto">'+
+                   '<center><span> <a style="background-color:#e9e9e9; padding:6px 11px; font-size:14px;color:#520086;border:1px solid lightgrey;cursor:pointer"><i class="fa fa-pinterest" aria-hidden="true"></i></a></span></center>'+
+                   '</div>'+
+                    '<div class="col-md-1 col-sm-1" style="margin:0 auto">'+
+                   '<center><span>  <a style="background-color:#e9e9e9; padding:6px 11px; font-size:14px;color:#520086; border:1px solid lightgrey;cursor:pointer"><i class="fa fa-youtube" aria-hidden="true"></i></a></span></center>'+
+                   '</div>'+
+                    '<div class="col-md-1 col-sm-1" style="margin:0 auto">'+
+                   '<center><span> <a style="background-color:#e9e9e9; padding:6px 11px; font-size:14px;color:#520086; border:1px solid lightgrey;cursor:pointer;"><i class="fa fa-linkedin" aria-hidden="true"></i></a></span></center>'+
+                   '</div>'+
+                   '<div class="col-md-3 col-sm-3"></div>'+
+                   '<div class="col-md-12 col-sm-12">'+
+                     '<span style="color:#63596a; font-size:13px">'+
+                     '<center style="margin: 20px 0px -17px 0px;"><b>TROOKING</b></center>'+
+                      '</span>'+
+                       '<br>'+
+                      '<span><center style="font-size:12px; color:#63596a;margin: -1px 0px 22px 0px;">Address </center></span>'+
+                      '</div>'+
+                   '</div>'+
+                   '<div class="row" style="background-color:#f6f6f6"><div class="col-md-12 col-sm-12"><span><center style="color:#918f92; padding:11px 20px; font-size:11px">This is an account-related message. Responses to this email will not go to a customer service representative. If you have questions or concerns, please call us or email us at <a style="color:#520085;text-decoration:underline; font-size:11px;cursor:pointer">email@.com</a>.</center></span></div>'+
+                   '<div class="col-md-12 col-sm-12"><a><center style="color:#918f92; padding:11px 20px; font-size:11px">©2017 trooking </center></a></div>'+
+                   '</div>'+                  
+                  '</div>';
+                  
+
+  </script>
+</body>
+</html>
